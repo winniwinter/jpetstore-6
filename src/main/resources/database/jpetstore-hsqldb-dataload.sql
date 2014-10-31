@@ -14,6 +14,9 @@
 --    limitations under the License.
 --
 
+
+INSERT INTO users VALUES(1,'blub', 'bla', 'bla');
+
 INSERT INTO sequence VALUES('ordernum', 1000);
 
 INSERT INTO signon VALUES('j2ee','j2ee');

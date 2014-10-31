@@ -33,6 +33,14 @@ create table signon (
     constraint pk_signon primary key (username)
 );
 
+create table users (
+    user_id int not null,
+    user_name varchar(25)  not null,
+    first_name varchar(25)  not null,
+    last_name varchar(25)  not null,
+   constraint pk_users primary key (user_id)
+);
+
 create table account (
     userid varchar(80) not null,
     email varchar(80) not null,
@@ -52,16 +60,16 @@ create table account (
 create table profile (
     userid varchar(80) not null,
     langpref varchar(80) not null,
-    favcategory varchar(30),
+    favourite_category_id varchar(30),
     mylistopt int,
     banneropt int,
     constraint pk_profile primary key (userid)
 );
 
 create table bannerdata (
-    favcategory varchar(80) not null,
+    favourite_category_id varchar(80) not null,
     bannername varchar(255)  null,
-    constraint pk_bannerdata primary key (favcategory)
+    constraint pk_bannerdata primary key (favourite_category_id)
 );
 
 create table orders (

@@ -36,7 +36,7 @@
           ACCOUNT.COUNTRY,
           ACCOUNT.PHONE,
           PROFILE.LANGPREF AS languagePreference,
-          PROFILE.FAVCATEGORY AS favouriteCategoryId,
+          PROFILE.favourite_category_id,
           PROFILE.MYLISTOPT AS listOption,
           PROFILE.BANNEROPT AS bannerOption,
           BANNERDATA.BANNERNAME
@@ -44,7 +44,7 @@
     WHERE ACCOUNT.USERID = #{username}
       AND SIGNON.USERNAME = ACCOUNT.USERID
       AND PROFILE.USERID = ACCOUNT.USERID
-      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
+      AND PROFILE.favourite_category_id = BANNERDATA.favourite_category_id
   </select>
 
   <select id="getAccountByUsernameAndPassword" resultType="Account">
@@ -62,7 +62,7 @@
       ACCOUNT.COUNTRY,
       ACCOUNT.PHONE,
       PROFILE.LANGPREF AS languagePreference,
-      PROFILE.FAVCATEGORY AS favouriteCategoryId,
+      PROFILE.favourite_category_id,
       PROFILE.MYLISTOPT AS listOption,
       PROFILE.BANNEROPT AS bannerOption,
       BANNERDATA.BANNERNAME
@@ -71,7 +71,7 @@
       AND SIGNON.PASSWORD = #{param2}
       AND SIGNON.USERNAME = ACCOUNT.USERID
       AND PROFILE.USERID = ACCOUNT.USERID
-      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
+      AND PROFILE.favourite_category_id = BANNERDATA.favourite_category_id
   </select>
 
   <update id="updateAccount" parameterType="Account">
@@ -102,7 +102,7 @@
   <update id="updateProfile" parameterType="Account">
     UPDATE PROFILE SET
       LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId},
+      favourite_category_id = #{favouriteCategoryId},
       MYLISTOPT = #{listOption},
       BANNEROPT = #{bannerOption}
     WHERE USERID = #{username}
@@ -112,20 +112,20 @@
   <update id="updateProfile" parameterType="Account">
     UPDATE PROFILE SET
       LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId}
+      favourite_category_id = #{favouriteCategoryId}
     WHERE USERID = #{username}
   </update>
 
   <!--  
   TODO MyBatis 3 does not map booleans to integers
   <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
+    INSERT INTO PROFILE (LANGPREF, favourite_category_id, MYLISTOPT, BANNEROPT, USERID)
     VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOption}, #{bannerOption}, #{username})
   </insert>
   -->
 
   <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
+    INSERT INTO PROFILE (LANGPREF, favourite_category_id, USERID)
     VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
   </insert>
 
